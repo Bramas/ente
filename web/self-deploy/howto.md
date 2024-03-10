@@ -2,29 +2,39 @@
 
 ### Environment variables for postgresql
 
-ENTE_DB_HOST=...
-ENTE_DB_PORT=...
-ENTE_DB_NAME=...
-ENTE_DB_USER=...
-ENTE_DB_PASSWORD=...
+```env
+ENTE_DB_HOST=
+ENTE_DB_PORT=
+ENTE_DB_NAME=
+ENTE_DB_USER=
+ENTE_DB_PASSWORD=
+```
 
 ### Env for the secrets obtained with `go run tools/gen-random-keys/main.go`
+
+```env
 ENTE_KEY_ENCRYPTION=
 ENTE_KEY_HASH=
 ENTE_JWT_SECRET=
+```
 
 ### Environment variables for the S3 bucket
-ENTE_S3_B2-EU-CEN_KEY=...
-ENTE_S3_B2-EU-CEN_SECRET=...
+
+```env
+ENTE_S3_B2-EU-CEN_KEY=
+ENTE_S3_B2-EU-CEN_SECRET=
 ENTE_S3_B2-EU-CEN_ENDPOINT=
 ENTE_S3_B2-EU-CEN_REGION=
 ENTE_S3_B2-EU-CEN_BUCKET=
 ENTE_S3_ARE_LOCAL_BUCKETS=false
+```
 
 ### Environment variables to avoid OTT
+
+```env
 ENTE_INTERNAL_HARDCODED-OTT_LOCAL-DOMAIN-SUFFIX=@you-domain.com
 ENTE_INTERNAL_HARDCODED-OTT_LOCAL-DOMAIN-VALUE=123456
-
+```
 
 # Web app
 
