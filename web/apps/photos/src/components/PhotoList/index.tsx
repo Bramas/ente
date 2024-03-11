@@ -718,6 +718,8 @@ export function PhotoList({
     };
 
     useEffect(() => {
+        if(!galleryContext.selectedFile) return;
+        
         const notSelectedFiles = displayFiles?.filter(
             (item) => !galleryContext.selectedFile[item.id],
         );

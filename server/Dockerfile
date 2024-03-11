@@ -10,6 +10,7 @@ COPY go.sum .
 RUN go mod download
 
 COPY . .
+RUN go mod tidy
 RUN --mount=type=cache,target=/root/.cache/go-build \
   go build -o museum cmd/museum/main.go
 
