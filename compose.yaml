@@ -1,7 +1,4 @@
-
-env_file:
-  - path: .credentials.env
-    required: true
+version: '3'
   
 services:
   museum:
@@ -31,7 +28,9 @@ services:
       ENTE_DB_NAME: ente_db
       ENTE_DB_USER: pguser
       ENTE_DB_PASSWORD: pgpass
-      
+    
+    env_file:
+      - ./.credentials.env
     volumes:
       - custom-logs:/var/logs
     networks:
@@ -41,8 +40,6 @@ services:
     build:
       context: web
       args:
-        ENDPOINT: "http://localhost:8080"
-        ALBUMS_ENDPOINT: "http://localhost:8082"
         GIT_SHA: local
     ports:
       - 8081:80
@@ -50,6 +47,8 @@ services:
     depends_on:
       museum:
         condition: service_healthy
+    env_file:
+      - ./.credentials.env
 
   postgres:
     image: postgres:12
