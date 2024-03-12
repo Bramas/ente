@@ -1,8 +1,8 @@
-# Start the server and the webapp
 
-clone the project then add a compose.yaml file at the root of the project with the following content:
-
-```yaml
+env_file:
+  - path: .credentials.env
+    required: true
+  
 services:
   museum:
     build:
@@ -24,25 +24,7 @@ services:
           "echo",
           "1"      # I don't know what to put here
         ]
-
     environment:
-
-      # run  `go run tools/gen-random-keys/main.go` in the server directory to generate the keys
-      #ENTE_KEY_ENCRYPTION:
-      #ENTE_KEY_HASH:
-      #ENTE_JWT_SECRET:
-    
-      # can also be set from the host environment. example: VAR: ${VAR}
-      ENTE_S3_B2-EU-CEN_KEY: YOUR_S3_KEY
-      ENTE_S3_B2-EU-CEN_SECRET: YOUR_S3_SECRET
-      ENTE_S3_B2-EU-CEN_ENDPOINT: YOUR_S3_ENDPOINT
-      ENTE_S3_B2-EU-CEN_REGION: YOUR_S3_REGION
-      ENTE_S3_B2-EU-CEN_BUCKET: YOUR_S3_BUCKET
-      ENTE_S3_ARE_LOCAL_BUCKETS: false
-      
-      ENTE_INTERNAL_HARDCODED-OTT_LOCAL-DOMAIN-SUFFIX: "@example.com"
-      ENTE_INTERNAL_HARDCODED-OTT_LOCAL-DOMAIN-VALUE: 123456
-      
       # no need to touch these
       ENTE_DB_HOST: postgres
       ENTE_DB_PORT: 5432
@@ -103,17 +85,3 @@ volumes:
 
 networks:
   internal:
-```
-
-Then run the following command to start the server and the webapp:
-
-```bash
-docker compose up -d
-```
-
-    
-# Add 2To of storage limite to the first user
-
-```bash 
-    docker compose exec -i postgres psql -U pguser -d ente_db -c "INSERT INTO storage_bonus (bonus_id, user_id, storage, type, valid_till) VALUES ('self-hosted-myself', (SELECT user_id FROM users), 2199023255552, 'ADD_ON_SUPPORT', 0)"
-```
